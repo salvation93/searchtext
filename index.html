@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <style>
+        *{
+            padding: 0%;
+            background-color: antiquewhite;
+        
+        }
+
+        .form-set{
+            text-align: center;
+            margin-top: 10%;
+
+        }
+        .search-bar{
+            width: 50%;
+            border-radius: 50px;
+            font-size: 180%;
+            text-indent: 5%;
+        }
+        .btn{
+            width: 10%;
+            border-radius: 50px;
+            font-size: 180%;
+        }
+        h2{
+            font-family: fantasy;
+            color: honeydew;
+            font-size: 250%;
+            font-style: italic;
+        }
+        .fan{
+            font-size: 300%;
+            color: green;
+        }
+        .rat{
+            font-size: 280%;
+            color: gold;
+        }
+        .soft{
+            font-size: 300%;
+            color: green;
+        }
+    </style>
+</head>
+<body style="background-image: url(/static/images/new_york.jpg);">
+    <form class="form-set" method="POST" action="search">
+        {% csrf_token %}
+        <h2><span class="fan">Se</span><span class="rat">arc</span><span class="soft">h</span></h2>
+        <div class="text-wrap">
+            <input  type="search" name="search" class="search-bar" autofocus="yes" placeholder="search for text or type a url">
+            <button class="btn btn-success" type="submit">search</button>
+        </div>
+    </form>
+</body>
+</html>

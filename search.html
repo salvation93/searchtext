@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <style>
+        *{
+            padding: 0%;
+            background-color: antiquewhite;
+        
+        }
+
+        .form-set{
+            text-align: center;
+            margin-top: 4%;
+
+        }
+        #search{
+            width: 50%;
+            border-radius: 50px;
+            font-size: 120%;
+            text-indent: 5%;
+        }
+      
+        .btn{
+            width: 10%;
+            border-radius: 50px;
+            font-size: 120%;
+        }
+        h2{
+            font-family: fantasy;
+            color: honeydew;
+            font-style: italic;
+        }
+        .fan{
+            font-family: fantasy;
+            font-style: italic;
+            font-size: 130%;
+            color: green;
+        }
+        .rat{
+            font-family: fantasy;
+            font-style: italic;
+            font-size: 130%;
+            color: gold;
+        }
+        .soft{
+            font-family: fantasy;
+            font-style: italic;
+            font-size: 130%;
+            color: green;
+        }
+        .card{
+            padding:1rem 1.5rem;
+            box-shadow: 15px 15px 15px 15px #fff;
+            left: 215px;
+            width: 100%;
+            /* margin-left: 12%; */
+            top:0;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+        <form class="form-set"action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+            <div class="text-wrap">
+                <span class="fan">Se</span><span class="rat">arc</span><span class="soft">h</span>
+                <input  type="search" name="search" id="search" autofocus="yes" placeholder="search for text or type a url">
+                <button class="btn btn-success" type="submit">search</button>
+            </div>
+        </form>
+
+        {% if final_result %}
+        <b style="padding-left: 50px; padding-right: 50px; margin-top: 20%;">Search Results</b>
+            {% for result in final_result %}
+            <table class="card table-light" style="border-style: double;">
+                <thead>
+                <th>Topics</th>
+                <th>Authors</th>
+                <th>Abstract</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="width: 30%;"><h3 class="card-title"><a style="color: blue;" href="{{result.1}}">{{result.0}}</a>
+                            <h6><a style="color: green;" href="{{result.1}}">{{result.1| truncatechars:50}}</a></h6>
+                        </h3></td>
+                        <td></td>
+                        <td style="width: 30%; "> {{result.2}}</td>
+                    </tr>
+                </tbody>
+            </table>
+               
+            {% endfor %}
+        {% endif %}
+        <div class="footer" style="text-align: center;">
+            All Right Reserved &copy; TickTeck 2022
+        </div>
+    {% endblock %}
+    
+</body>
+</html>
